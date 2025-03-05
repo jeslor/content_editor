@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <section className="editor">
       <header className="App-header">
-        <h2>Content editor in react</h2>
+        <h1>Content editor in react</h1>
       </header>
       <WavyLines />
       <Tiptap />
