@@ -1,5 +1,5 @@
 import {  useCurrentEditor } from '@tiptap/react'
-import { use, useEffect, useState } from 'react'
+import {  useEffect, useState } from 'react'
 
 import { Icon } from "@iconify/react";
 
@@ -15,21 +15,26 @@ const MenuBar = () => {
         setIsOpen(!isOpen)
         }
 
-    const handleCloseHeadings = () => {
-        setIsOpen(false)
-        }
     const handleHeading = (level: any) => {
         editor.chain().focus().toggleHeading({ level }).run()
         setIsOpen(false)
         }
+
+    interface CloseHeadingsEvent extends Event {
+        target: HTMLElement;
+    }
+
+    const closeHeadings = (e: MouseEvent) => {
+        if (e.target !== document.querySelector('.heading-group-title')) {
+            setIsOpen(false);
+        }
+    }
+
+
     useEffect(() => {
-        document.addEventListener('click', (e)=>{
-            if(e.target !== document.querySelector('.heading-group-title')){
-                setIsOpen(false)
-            }
-        })
+        document.addEventListener('click',  closeHeadings)
         return () => {
-          document.removeEventListener('click', handleCloseHeadings)
+          document.removeEventListener('click', closeHeadings)
         }
     },)
   
@@ -200,12 +205,20 @@ const MenuBar = () => {
             Hard break
           </button>
          
-          <button
-            onClick={() => editor.chain().focus().setColor('#958DF1').run()}
-            className={editor.isActive('textStyle', { color: '#958DF1' }) ? 'is-active' : ''}
-          >
-            Purple
-          </button>
+          <div>
+            <button
+               
+                className={` ${editor.isActive('textStyle', { color: '#958DF1' }) ? '' : ''} noFillButton` }
+            >
+                Color
+                <input
+                type="color"
+                onChange={(event) => editor.chain().focus().setColor(event.target.value).run()}
+            />
+            </button>
+
+           
+            </div>
         </div>
       </div>
     )
