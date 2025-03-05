@@ -15,6 +15,30 @@ const MenuBar = () => {
     return (
       <div className="control-group">
         <div className="button-group">
+        <button
+            onClick={() => editor.chain().focus().undo().run()}
+            disabled={
+              !editor.can()
+                .chain()
+                .focus()
+                .undo()
+                .run()
+            }
+          >
+            <Icon icon="material-symbols:undo-rounded"  />
+          </button>
+          <button
+            onClick={() => editor.chain().focus().redo().run()}
+            disabled={
+              !editor.can()
+                .chain()
+                .focus()
+                .redo()
+                .run()
+            }
+          >
+            <Icon icon="material-symbols:redo-rounded"  />
+          </button>
           <button
             onClick={() => editor.chain().focus().toggleBold().run()}
             disabled={
@@ -67,11 +91,29 @@ const MenuBar = () => {
           >
             <Icon icon="mdi:code"  />
           </button>
-          <button onClick={() => editor.chain().focus().unsetAllMarks().run()}>
-            Clear marks
+          <button
+            onClick={() => editor.chain().focus().toggleBulletList().run()}
+            className={editor.isActive('bulletList') ? 'is-active' : ''}
+          >
+            <Icon icon="fe:list-bullet"  />
           </button>
-          <button onClick={() => editor.chain().focus().clearNodes().run()}>
-            Clear nodes
+          <button
+            onClick={() => editor.chain().focus().toggleOrderedList().run()}
+            className={editor.isActive('orderedList') ? 'is-active' : ''}
+          >
+            <Icon icon="octicon:list-ordered-16"  />
+          </button>
+          <button
+            onClick={() => editor.chain().focus().toggleCodeBlock().run()}
+            className={editor.isActive('codeBlock') ? 'is-active' : ''}
+          >
+            <Icon icon="fluent:code-block-32-regular"  />
+          </button>
+          <button
+            onClick={() => editor.chain().focus().toggleBlockquote().run()}
+            className={editor.isActive('blockquote') ? 'is-active' : ''}
+          >
+            <Icon icon="clarity:block-quote-line"  />
           </button>
           <button
             onClick={() => editor.chain().focus().setParagraph().run()}
@@ -79,15 +121,25 @@ const MenuBar = () => {
           >
             <Icon icon="mdi:format-paragraph" width="24" height="24" />
           </button>
-          <button
-            onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-            className={editor.isActive('heading', { level: 1 }) ? 'is-active' : ''}
+          <button onClick={() => editor.chain().focus().unsetAllMarks().run()}>
+            Clear marks
+          </button>
+          <button onClick={() => editor.chain().focus().clearNodes().run()}>
+            Clear nodes
+          </button>
+         
+          <div className='heading-group'>
+            <button className='heading-group-title'>Headings</button>
+            <div className='heading-buttons'>
+            <button
+            onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+            className={editor.isActive('heading', { level: 2 }) ? 'is-active' : ''}
           >
             H1
           </button>
           <button
-            onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
-            className={editor.isActive('heading', { level: 2 }) ? 'is-active' : ''}
+            onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+            className={editor.isActive('heading', { level: 1 }) ? 'is-active' : ''}
           >
             H2
           </button>
@@ -115,60 +167,17 @@ const MenuBar = () => {
           >
             H6
           </button>
-          <button
-            onClick={() => editor.chain().focus().toggleBulletList().run()}
-            className={editor.isActive('bulletList') ? 'is-active' : ''}
-          >
-            <Icon icon="fe:list-bullet"  />
-          </button>
-          <button
-            onClick={() => editor.chain().focus().toggleOrderedList().run()}
-            className={editor.isActive('orderedList') ? 'is-active' : ''}
-          >
-            <Icon icon="octicon:list-ordered-16"  />
-          </button>
-          <button
-            onClick={() => editor.chain().focus().toggleCodeBlock().run()}
-            className={editor.isActive('codeBlock') ? 'is-active' : ''}
-          >
-            <Icon icon="fluent:code-block-32-regular"  />
-          </button>
-          <button
-            onClick={() => editor.chain().focus().toggleBlockquote().run()}
-            className={editor.isActive('blockquote') ? 'is-active' : ''}
-          >
-            <Icon icon="clarity:block-quote-line"  />
-          </button>
+            </div>
+          </div>
+        
+        
           <button onClick={() => editor.chain().focus().setHorizontalRule().run()}>
             Horizontal rule
           </button>
           <button onClick={() => editor.chain().focus().setHardBreak().run()}>
             Hard break
           </button>
-          <button
-            onClick={() => editor.chain().focus().undo().run()}
-            disabled={
-              !editor.can()
-                .chain()
-                .focus()
-                .undo()
-                .run()
-            }
-          >
-            <Icon icon="material-symbols:undo-rounded"  />
-          </button>
-          <button
-            onClick={() => editor.chain().focus().redo().run()}
-            disabled={
-              !editor.can()
-                .chain()
-                .focus()
-                .redo()
-                .run()
-            }
-          >
-            <Icon icon="material-symbols:redo-rounded"  />
-          </button>
+         
           <button
             onClick={() => editor.chain().focus().setColor('#958DF1').run()}
             className={editor.isActive('textStyle', { color: '#958DF1' }) ? 'is-active' : ''}
