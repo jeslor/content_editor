@@ -1,6 +1,6 @@
 # ContentEditor 📝
 
-A **React Content Editor** for rich text editing, supporting formatting, images, and more! 🚀
+A **React Content Editor** for rich text editing, supporting formatting, code and more, using tiptap! 🚀
 
 ## Features ✨
 - **Bold**, *Italic*, & Underline formatting 🎨
