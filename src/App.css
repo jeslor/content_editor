@@ -37,7 +37,7 @@ h2{
   overflow-y: auto;
   background-color: aliceblue;
   color: #190505;
-  height: 400px;
+  /* height: 400px; */
 }
 .App-header{
   display: flex;
