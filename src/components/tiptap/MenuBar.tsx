@@ -3,6 +3,7 @@ import { Color } from '@tiptap/extension-color'
 import ListItem from '@tiptap/extension-list-item'
 import TextStyle from '@tiptap/extension-text-style'
 import StarterKit from '@tiptap/starter-kit'
+import { Icon } from "@iconify/react";
 
 const MenuBar = () => {
     const { editor } = useCurrentEditor()
@@ -25,7 +26,7 @@ const MenuBar = () => {
             }
             className={editor.isActive('bold') ? 'is-active' : ''}
           >
-            Bold
+            <Icon icon="octicon:bold-16" width="16" height="16" />
           </button>
           <button
             onClick={() => editor.chain().focus().toggleItalic().run()}
@@ -38,7 +39,7 @@ const MenuBar = () => {
             }
             className={editor.isActive('italic') ? 'is-active' : ''}
           >
-            Italic
+            <Icon icon="oi:italic"  />
           </button>
           <button
             onClick={() => editor.chain().focus().toggleStrike().run()}
@@ -51,7 +52,7 @@ const MenuBar = () => {
             }
             className={editor.isActive('strike') ? 'is-active' : ''}
           >
-            Strike
+            <Icon icon="mdi:format-strikethrough"  />
           </button>
           <button
             onClick={() => editor.chain().focus().toggleCode().run()}
@@ -64,7 +65,7 @@ const MenuBar = () => {
             }
             className={editor.isActive('code') ? 'is-active' : ''}
           >
-            Code
+            <Icon icon="mdi:code"  />
           </button>
           <button onClick={() => editor.chain().focus().unsetAllMarks().run()}>
             Clear marks
@@ -76,7 +77,7 @@ const MenuBar = () => {
             onClick={() => editor.chain().focus().setParagraph().run()}
             className={editor.isActive('paragraph') ? 'is-active' : ''}
           >
-            Paragraph
+            <Icon icon="mdi:format-paragraph" width="24" height="24" />
           </button>
           <button
             onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
@@ -118,25 +119,25 @@ const MenuBar = () => {
             onClick={() => editor.chain().focus().toggleBulletList().run()}
             className={editor.isActive('bulletList') ? 'is-active' : ''}
           >
-            Bullet list
+            <Icon icon="fe:list-bullet"  />
           </button>
           <button
             onClick={() => editor.chain().focus().toggleOrderedList().run()}
             className={editor.isActive('orderedList') ? 'is-active' : ''}
           >
-            Ordered list
+            <Icon icon="octicon:list-ordered-16"  />
           </button>
           <button
             onClick={() => editor.chain().focus().toggleCodeBlock().run()}
             className={editor.isActive('codeBlock') ? 'is-active' : ''}
           >
-            Code block
+            <Icon icon="fluent:code-block-32-regular"  />
           </button>
           <button
             onClick={() => editor.chain().focus().toggleBlockquote().run()}
             className={editor.isActive('blockquote') ? 'is-active' : ''}
           >
-            Blockquote
+            <Icon icon="clarity:block-quote-line"  />
           </button>
           <button onClick={() => editor.chain().focus().setHorizontalRule().run()}>
             Horizontal rule
@@ -154,7 +155,7 @@ const MenuBar = () => {
                 .run()
             }
           >
-            Undo
+            <Icon icon="material-symbols:undo-rounded"  />
           </button>
           <button
             onClick={() => editor.chain().focus().redo().run()}
@@ -166,7 +167,7 @@ const MenuBar = () => {
                 .run()
             }
           >
-            Redo
+            <Icon icon="material-symbols:redo-rounded"  />
           </button>
           <button
             onClick={() => editor.chain().focus().setColor('#958DF1').run()}
