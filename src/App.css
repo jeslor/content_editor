@@ -10,7 +10,43 @@ body{
     color: aliceblue;
 }
 
+#root, .App{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 h2{
   font-size: 2rem;
+  margin: 1rem 0;
 
+}
+
+.editor{
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.ProseMirror{
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  height: 50%;
+  overflow-y: auto;
+  background-color: aliceblue;
+  color: #190505;
+}
+.App-header{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.wavy-lines{
+  margin-bottom: 2rem;
 }

@@ -7,7 +7,7 @@ const WavyLines = () => {
   const colors = ["#ff5733", "#33ff57", "#3357ff", "#f4c542", "#ff33a8"];
 
   return (
-    <div className="relative w-full h-64 overflow-hidden flex items-center justify-center bg-gray-100">
+    <div className="wavy-lines">
       {Array.from({ length: numLines }).map((_, i) => (
         <motion.div
           key={i}

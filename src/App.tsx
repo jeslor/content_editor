@@ -1,13 +1,21 @@
 import "./App.css"
-import WavyLines from "./bgComponent"
+import WavyLines from "./components/bgComponent"
+import Tiptap from "./components/TipTap"
+
+
 
 function App() {
+
   return (
     <div className="App">
-      <WavyLines />
+      <section className="editor">
       <header className="App-header">
         <h2>Content editor in react</h2>
       </header>
+      <WavyLines />
+      <Tiptap />
+      </section>
+      
     </div>
   )
 }
