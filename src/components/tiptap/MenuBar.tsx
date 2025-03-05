@@ -1,16 +1,37 @@
 import {  useCurrentEditor } from '@tiptap/react'
-import { Color } from '@tiptap/extension-color'
-import ListItem from '@tiptap/extension-list-item'
-import TextStyle from '@tiptap/extension-text-style'
-import StarterKit from '@tiptap/starter-kit'
+import { use, useEffect, useState } from 'react'
+
 import { Icon } from "@iconify/react";
 
 const MenuBar = () => {
+    const [isOpen, setIsOpen] = useState(false)
     const { editor } = useCurrentEditor()
   
     if (!editor) {
       return null
     }
+
+    const handleOpenHeadings = () => {
+        setIsOpen(!isOpen)
+        }
+
+    const handleCloseHeadings = () => {
+        setIsOpen(false)
+        }
+    const handleHeading = (level: any) => {
+        editor.chain().focus().toggleHeading({ level }).run()
+        setIsOpen(false)
+        }
+    useEffect(() => {
+        document.addEventListener('click', (e)=>{
+            if(e.target !== document.querySelector('.heading-group-title')){
+                setIsOpen(false)
+            }
+        })
+        return () => {
+          document.removeEventListener('click', handleCloseHeadings)
+        }
+    },)
   
     return (
       <div className="control-group">
@@ -121,55 +142,56 @@ const MenuBar = () => {
           >
             <Icon icon="mdi:format-paragraph" width="24" height="24" />
           </button>
+          <div className='heading-group'>
+            <button onClick={handleOpenHeadings} className='heading-group-title'>Headings <Icon icon="ri:arrow-drop-down-line"  /></button>
+            {isOpen && (
+            <div className='heading-buttons'>
+        <button
+        onClick={() => handleHeading(1)}
+        className={editor.isActive('heading', { level: 2 }) ? 'is-active' : ''}
+          >
+            Heading 1
+          </button>
+          <button
+            onClick={() => handleHeading(2)}
+            className={editor.isActive('heading', { level: 1 }) ? 'is-active' : ''}
+          >
+            Heading 2
+          </button>
+          <button
+            onClick={() => handleHeading(3)}
+            className={editor.isActive('heading', { level: 3 }) ? 'is-active' : ''}
+          >
+            Heading 3
+          </button>
+          <button
+            onClick={() => handleHeading(4)}
+            className={editor.isActive('heading', { level: 4 }) ? 'is-active' : ''}
+          >
+            Heading 4
+          </button>
+          <button
+            onClick={() => handleHeading(5)}
+            className={editor.isActive('heading', { level: 5 }) ? 'is-active' : ''}
+          >
+            Heading
+          </button>
+          <button
+            onClick={() => handleHeading(6)}
+            className={editor.isActive('heading', { level: 6 }) ? 'is-active' : ''}
+          >
+            Heading 6
+          </button>
+            </div>
+            )}
+          </div>
+        
           <button onClick={() => editor.chain().focus().unsetAllMarks().run()}>
             Clear marks
           </button>
           <button onClick={() => editor.chain().focus().clearNodes().run()}>
             Clear nodes
           </button>
-         
-          <div className='heading-group'>
-            <button className='heading-group-title'>Headings</button>
-            <div className='heading-buttons'>
-            <button
-            onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
-            className={editor.isActive('heading', { level: 2 }) ? 'is-active' : ''}
-          >
-            H1
-          </button>
-          <button
-            onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-            className={editor.isActive('heading', { level: 1 }) ? 'is-active' : ''}
-          >
-            H2
-          </button>
-          <button
-            onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
-            className={editor.isActive('heading', { level: 3 }) ? 'is-active' : ''}
-          >
-            H3
-          </button>
-          <button
-            onClick={() => editor.chain().focus().toggleHeading({ level: 4 }).run()}
-            className={editor.isActive('heading', { level: 4 }) ? 'is-active' : ''}
-          >
-            H4
-          </button>
-          <button
-            onClick={() => editor.chain().focus().toggleHeading({ level: 5 }).run()}
-            className={editor.isActive('heading', { level: 5 }) ? 'is-active' : ''}
-          >
-            H5
-          </button>
-          <button
-            onClick={() => editor.chain().focus().toggleHeading({ level: 6 }).run()}
-            className={editor.isActive('heading', { level: 6 }) ? 'is-active' : ''}
-          >
-            H6
-          </button>
-            </div>
-          </div>
-        
         
           <button onClick={() => editor.chain().focus().setHorizontalRule().run()}>
             Horizontal rule
