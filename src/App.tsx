@@ -1,6 +1,6 @@
 import "./App.css"
 import WavyLines from "./components/bgComponent"
-import Tiptap from "./components/TipTap"
+import Tiptap from "./components/tiptap/TipTap"
 
 
 

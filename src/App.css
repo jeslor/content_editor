@@ -30,6 +30,7 @@ h2{
 }
 
 .ProseMirror{
+  max-width: 800px;
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -39,6 +40,7 @@ h2{
   overflow-y: auto;
   background-color: aliceblue;
   color: #190505;
+  height: 400px;
 }
 .App-header{
   display: flex;
@@ -49,4 +51,27 @@ h2{
 }
 .wavy-lines{
   margin-bottom: 2rem;
+}
+
+.button-group{
+  display: flex;
+  justify-content: start;
+  flex-wrap: wrap;
+  background-color: slategray;
+  width: 100%;
+}
+
+button{
+  background-color: #ccc;
+  color: aliceblue;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0.5rem;
+}
+
+button.is-active{
+  background-color: #190505;
+  color: aliceblue;
 }
